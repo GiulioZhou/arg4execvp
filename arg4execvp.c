@@ -7,14 +7,13 @@
 
 char **split (char **argv2, char *stringa){
 	
-	 char *s= "ls -l";
 	char *token;
 	int nSpazi = 0;
 	
-	//strtok(stringa, "\n");
+	strtok(stringa, "\n");
 	printf("%s\n",stringa);
 	/* get the first token */
-	token = strtok(s, " ");
+	token = strtok(stringa, " ");
 	printf("%s\n",token);
 
 	/* walk through other tokens */
