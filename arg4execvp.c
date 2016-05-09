@@ -2,12 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #define MAX_ARGS 64
 #define MAX_LINE 1024
-
-
-
 
 void split(char *command[], char line[]){
 	
