@@ -72,6 +72,9 @@ int main(int argc, char *argv[]){
 	fclose(f);
 	return 0;
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> ab112bc6e5f2e3abc41ae7dece2a3e543e9c0d02
