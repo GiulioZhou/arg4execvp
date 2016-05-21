@@ -2,29 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-#define MAX_ARGS 64
-#define MAX_LINE 1024
+#include "mylib.h"
 
-//split the command line into { command, par1, par2, ..., parn, NULL}
-
-void split(char *command[], char line[]){
-	
-	char *token;
-	int spaces = 0;
- 
-	strtok(line, "\n");
-	token = strtok(line, " ");
-	
-	while( token != NULL )
-	{
-		spaces++;
-		command[spaces-1] = token;
-		token = strtok(NULL, " ");
-	}
-	
-	command[spaces] = NULL;
-	
-}
 
 int main(int argc, char *argv[]){
 	
@@ -35,9 +14,11 @@ int main(int argc, char *argv[]){
 	}
 	
 	char *path = argv[1]; //indirizzo del file da leggere
-	char *cmd[MAX_ARGS]; //vettore dei parametri
-	char cmdString[MAX_LINE]; //riga di codice
-	char *s =cmdString;
+	char *cmdString; //riga di codice
+	size_t n;
+	ssize_t read;
+
+
 	FILE *f;
 	int pid;
 	
@@ -51,7 +32,7 @@ int main(int argc, char *argv[]){
 	
 	//Gets all the line and execute
 	
-	while ( fgets (cmdString, MAX_LINE, f)!=NULL){
+	while (( read = getline(&cmdString, &n, f))!=-1){
 		
 		if ( (pid = fork()) == -1) {
 			return(EXIT_FAILURE);
@@ -59,10 +40,7 @@ int main(int argc, char *argv[]){
 		
 		if (pid == 0) {	//child
 	
-			split (cmd, cmdString);
-			execvp(cmd[0], cmd);
-			
-			perror(cmd[0]);
+			myexec(cmdString);
 			return(EXIT_FAILURE);
 			
 		} else {
@@ -72,9 +50,3 @@ int main(int argc, char *argv[]){
 	fclose(f);
 	return 0;
 }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> ab112bc6e5f2e3abc41ae7dece2a3e543e9c0d02
