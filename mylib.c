@@ -34,7 +34,7 @@ void myexec (const char *line){
 	//char *copy=strdup(line);
 	char **command=calloc(argc+1,sizeof(char *));
 	buf=strdup(line);
-	split(line,command);
+	split(buf,command);
 	execvp(command[0], command);
 	
 }
