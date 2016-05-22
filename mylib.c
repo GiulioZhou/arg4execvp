@@ -21,7 +21,6 @@ int split(char line[], char **command){
 		token = strtok(NULL, " ");
 		counter++;
 	}
-	if(command) command[counter] = NULL;
 	
 	
 	return counter;
