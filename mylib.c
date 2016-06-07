@@ -26,7 +26,7 @@ int split(char line[], char **command){
 	return counter;
 }
 
-void myexec (const char *line){
+extern void myexec (const char *line){
 	
 	char *buf=strdup(line);
 	int argc=split(buf,NULL);

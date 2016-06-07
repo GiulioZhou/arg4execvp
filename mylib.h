@@ -3,4 +3,4 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void myexec (const char *line);
+extern void myexec (const char *line);
